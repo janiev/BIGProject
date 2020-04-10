@@ -1,2 +1,1 @@
-# BIGProject
-Image Segmentation
+Ons BIG project

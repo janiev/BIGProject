@@ -10,6 +10,7 @@ if amountDecimals>7
     disp('lmao je hebt te veel fotos, pas de iteratie methode doorheen de fotos aan')
     return
 end
+
 %% MAIN LOOP
 
 %initialize position data list
@@ -19,6 +20,7 @@ pictureFolder = 'C:\Users\janva\Desktop\skool\matlab BIG\pictures';
 
 for i = minPhotos:maxPhotos
 pictureRank = i-minPhotos+1;
+
 %Reading in ith picture
 
 %first create pictureName

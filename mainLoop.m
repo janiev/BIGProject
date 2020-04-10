@@ -41,6 +41,8 @@ binaryImage = binaryImageFactory(image,50);
 
 positionData{pictureRank} = furthestPointFinder(binaryImage);
 
+%lmao
+
 
 
 

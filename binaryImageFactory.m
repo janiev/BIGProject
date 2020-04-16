@@ -1,5 +1,5 @@
 function binaryImage = binaryImageFactory(jpgImage,threshholdValue)
-%Function converts a tiff image to a useable binaryImage
+%Function converts a jpg image to a useable binaryImage
 
 %remove lens distortion
 undistortedImage = undistordImage(jpgImage,cameraParams);

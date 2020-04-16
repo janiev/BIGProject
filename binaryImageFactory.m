@@ -4,9 +4,9 @@ function binaryImage = binaryImageFactory(jpgImage,threshholdValue)
 %remove lens distortion
 undistortedImage = undistordImage(jpgImage,cameraParams);
 
-image = histeq(undistortedImage);
+image = rgb2gray(undistortedImage);
 %convert to grayscale image
-image = rgb2gray(image);
+image = histeq(image);
 
 %kies de threshold value
 binaryImage = image < threshholdValue;

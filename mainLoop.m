@@ -1,6 +1,6 @@
 
-minPhotos = 645;%input('the smallest index');
-maxPhotos = 1000;%input('please the highest index of a photo in the dataset');
+minPhotos = 3209;%input('the smallest index');
+maxPhotos = 3600;%input('please the highest index of a photo in the dataset');
 
 
 %% Check of maxPhotos valid is
@@ -10,17 +10,16 @@ if amountDecimals>7
     disp('lmao je hebt te veel fotos, pas de iteratie methode doorheen de fotos aan')
     return
 end
-
 %% MAIN LOOP
 
 %initialize position data list
 positionData = cell(1,maxPhotos-minPhotos+1);
 %specify the picture folder
-pictureFolder = 'C:\Users\janva\Desktop\skool\matlab BIG\pictures';
+pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_002';
 
 for i = minPhotos:maxPhotos
+i
 pictureRank = i-minPhotos+1;
-
 %Reading in ith picture
 
 %first create pictureName
@@ -37,12 +36,9 @@ image = imread(fullFileName);
 
 %Nu Verwerken we de ith foto
 
-binaryImage = binaryImageFactory(image,50);
+binaryImage = binaryImageFactory(image,160);
 
-positionData{pictureRank} = furthestPointFinder(binaryImage);
-
-%lmao
-%lmao
+positionData{pictureRank} = furthestPointFinder(binaryImage,335);
 
 
 

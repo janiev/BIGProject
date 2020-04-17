@@ -1,8 +1,8 @@
 
 %706 is echt kut
-minPhotos = 3209;%input('the smallest index');
-maxPhotos = 3600
-pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_002';
+%minPhotos = 3209;%input('the smallest index');
+%maxPhotos = 3600
+%pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_002';
 filename = 'positionDataOverlayed.gif';
 
 for i = minPhotos:maxPhotos

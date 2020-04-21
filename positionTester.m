@@ -22,7 +22,7 @@ pictureName = strcat(zeroesString,indexString);
 %Now find that pictureName and read it in
 fullFileName = fullfile(pictureFolder, strcat(pictureName,'.jpg'));
 image = imread(fullFileName);
-neutralPosition = rgb2gray(imread('calibratieFoto.jpg'));
+%neutralPosition = rgb2gray(imread('calibratieFoto.jpg'));
 %image = image+neutralPosition;
 image = insertText(image,[0 0],i,'FontSize',40);
 

@@ -44,7 +44,7 @@ binaryImage = image > 24;
 binaryImage = bwareaopen(binaryImage,50);
 
 
-%now proces image and find furthestpoint
+%DODO now proces image and find furthestpoint
 positionData{pictureRank} = furthestPointFinder(binaryImage,220);
 
 end

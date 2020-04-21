@@ -70,6 +70,6 @@ for i=1:length(topListEnhanced)
 
 end
 
-dampingC = [dampingC b2];
+dampingC = [mean(dampingCList) b2];
 
 end

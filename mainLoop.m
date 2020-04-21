@@ -1,7 +1,10 @@
+%DODO
+minPhotos = 4297;%input('the smallest index');
+maxPhotos = minPhotos+300;%input('please the highest index of a photo in the dataset');
 
-minPhotos = 3209;%input('the smallest index');
-maxPhotos = 3600;%input('please the highest index of a photo in the dataset');
-
+%constnts
+FRAMERATE = 250;
+PIXELSIZE = 0.001;
 
 %% Check of maxPhotos valid is
 %TO DO : geen check voor minPhotos, en enkel check of maxPhotos niet te groot is
@@ -14,38 +17,36 @@ end
 
 %initialize position data list
 positionData = cell(1,maxPhotos-minPhotos+1);
-%specify the picture folder
-pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_002';
+
+
+%DODO specify the picture folder
+pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_014';
+
+
+%generate averagePicture
+averagePicture = histeq(averagePictureFactory(pictureFolder,minPhotos,minPhotos+15));
 
 for i = minPhotos:maxPhotos
-i
+
+%Give user feedback program is running
+disp([num2str(((i-minPhotos+1)/(maxPhotos-minPhotos+1))*100) '%'])
 pictureRank = i-minPhotos+1;
-%Reading in ith picture
 
-%first create pictureName
-indexString = num2str(i);
-decimals = strlength(indexString);
-amountZeroes = 7-decimals;
-zeroesString = repmat(num2str(0),1,amountZeroes);
-pictureName = strcat(zeroesString,indexString);
 
-%Now find that pictureName and read it in
-fullFileName = fullfile(pictureFolder, strcat(pictureName,'.jpg'));
-
+%read in ith image
+fullFileName = generatePictureName(i,pictureFolder);
 image = imread(fullFileName);
 
-%Nu Verwerken we de ith foto
-
-binaryImage = binaryImageFactory(image,160);
-
-positionData{pictureRank} = furthestPointFinder(binaryImage,335);
-
-
+%preproces that image
+image = histeq(rgb2gray(image));
+image = uint8(double(averagePicture)-double(image));
+binaryImage = image > 24;
+binaryImage = bwareaopen(binaryImage,50);
 
 
-
-
-
-
+%now proces image and find furthestpoint
+positionData{pictureRank} = furthestPointFinder(binaryImage,220);
 
 end
+%%
+pm = calculateDamping([0 0],[0 0],positionData,PIXELSIZE,FRAMERATE);

@@ -3,7 +3,7 @@ function value = furthestPointFinder(x,maxHeight)
 binaryImage = x;
 
 furthestPoint = [0 0];
-for y = maxHeight:655
+for y = maxHeight:800
     furthestPointRow = [0 0];
     for x = 330:940
         if and(binaryImage(y,x)==1,x > furthestPointRow(2))

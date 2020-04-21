@@ -1,12 +1,13 @@
 
-%706 is echt kut
-%minPhotos = 3209;%input('the smallest index');
-%maxPhotos = 3600
-%pictureFolder = 'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190823\images\stem_002';
-filename = 'positionDataOverlayed.gif';
 
-for i = minPhotos:maxPhotos
-i
+%minPhotos = 3209;%input('the smallest index');
+%maxPhotos = 3600;
+%pictureFolder = 'C:\Users\janva\Desktop\skool\matlab BIG\pictures';
+filename = 'positionDataOverlayedmap4Stem14.gif';
+
+for i = minPhotos:maxPhotos-100
+
+    disp([num2str(((i-minPhotos+1)/(maxPhotos-100-minPhotos+1))*100) '%'])
 
 
 %Reading in ith picture
@@ -22,7 +23,7 @@ pictureName = strcat(zeroesString,indexString);
 fullFileName = fullfile(pictureFolder, strcat(pictureName,'.jpg'));
 image = imread(fullFileName);
 neutralPosition = rgb2gray(imread('calibratieFoto.jpg'));
-image = image+neutralPosition;
+%image = image+neutralPosition;
 image = insertText(image,[0 0],i,'FontSize',40);
 
 for j = 0:40
@@ -38,7 +39,6 @@ end
 
 [A,map] = rgb2ind(image,256);
 if i == minPhotos
-    disp('lmao')
     imwrite(A,map,filename,'gif','LoopCount',Inf,'DelayTime',0.25);
 else
     imwrite(A,map,filename,'gif','WriteMode','append','DelayTime',0.25);

@@ -27,7 +27,7 @@ end
 %enhance topList ==> make toplistEnhanced
 topListDiffMean = mean(diff(topList));
 topListEnhanced = [];
-for i = 3:length(topList)/3
+for i = 3:length(topList)/4
     
     if abs(topList(i)-topList(i+1))>topListDiffMean*0.8
         topListEnhanced(end+1) = topList(i);

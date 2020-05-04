@@ -8,7 +8,7 @@ sec = c(6);
 %Reading in first picture
 firstPictureFileName = generatePictureName(min,folder);
 totimage = rgb2gray(imread(firstPictureFileName));
-totimage = histeq(totimage);
+%totimage = histeq(totimage);
 totimage = double(totimage);
 
 for i = min+1:max

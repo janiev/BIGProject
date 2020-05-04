@@ -1,6 +1,6 @@
 %DODO specify the picture folder
 
-pictureFolder = uigetdir('lmao');%'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190712\images\stem_002broken.5313.258';
+pictureFolder = uigetdir %'C:\Users\janva\Desktop\skool\2019_damping_wheat\20190820\images\stem_009.1957.259';
 pluk = [];
 for i = 1:length(pictureFolder)
     if pictureFolder(i) == '.'
@@ -50,7 +50,7 @@ image = imread(fullFileName);
 image = histeq(rgb2gray(image));
 image = uint8(double(averagePicture)-double(image));
 binaryImage = image > 24;
-binaryImage = bwareaopen(binaryImage,50);
+binaryImage = bwareaopen(binaryImage,150);
 
 
 %DODO now proces image and find furthestpoint
@@ -58,7 +58,7 @@ positionData{pictureRank} = furthestPointFinder(binaryImage,maxH);
 
 end
 %%
-pm = calculateDamping([0 0],[0 0],positionData,PIXELSIZE,FRAMERATE);
+pm = calculateDamping([0 0],[maxH 0],positionData,PIXELSIZE,FRAMERATE);
 
 t = 1/FRAMERATE:1/FRAMERATE:(maxPhotos-minPhotos+1)/FRAMERATE;
 y = [];

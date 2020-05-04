@@ -1,8 +1,11 @@
-
-neutral = [495.5 100];
-pixelSize = 0.001;
-frameRate = 2500;
+neutral = [0 0];
 initial = [0 0];
+pixelSize = PIXELSIZE;
+frameRate = FRAMERATE;
+
+%input : neutral (neutralPos vector [y x])==> pass [0 0] for default // initial (initialPos vector
+%[y x])==> pass [0 0] for default // positionData (cell array) // pixelSize
+%(double) // frameRate (double)
 
 %create all necessary variables
 neutralY = neutral(1);
@@ -25,22 +28,33 @@ for i=2:length(positionData)
         topList(end+1) = i;
     end      
 end
-
+%enhance topList ==> make toplistEnhanced
+topListDiffMean = mean(diff(topList));
+topListEnhanced = [];
+for i = 3:length(topList)/4
+    
+    if abs(topList(i)-topList(i+1))>topListDiffMean*0.8
+        topListEnhanced(end+1) = topList(i);
+    end
+    
+end
 %interpret topList and create oscperiod with it
-topListEnhanced = topList(2:length(topList)/2);
+%topListEnhanced = topList(3:length(topList)/2);
 oscperiodList = diff(topListEnhanced);
 oscperiod = mean(oscperiodList)*2;
 
 %check if neutralY is correct
 if abs(neutralY-mean(yData))>15
-    neutralY = input('lmao');
+    neutralY = mean(yData);
+    disp('Warning : average is useed to calculate neutral strawpos')
 end
 %check if initialY is correct
 if initialY==0
     initialY = min(yData);
+    disp('Warning : minimum yData is useed to calculate minimum strawpos')
 end
 
-%now calculate the damping
+%now calculate the damping (vanaf nu gebruiken we neutralY en initialY)
 %Step 1 : put everything in the right units
 b2 = 1/(oscperiod*(1/frameRate));
 neut = neutralY*pixelSize;
@@ -63,10 +77,15 @@ end
 dampingC = mean(dampingCList);
 
 %%
-teller = yData(54)*pixelSize-neut;
-noemer = b0*cos(2*pi*b2*0.0216);
-value = (1/0.0216)*log(teller/noemer);
 
+image = imread(generatePictureName(2253,pictureFolder));
 
-
-
+%preproces that image
+image = histeq(rgb2gray(image));
+imshow(image)
+image = uint8(double(averagePicture)-double(image));
+%imshow(image)
+binaryImage = image > 24;
+imshow(binaryImage)
+binaryImage = bwareaopen(binaryImage,100);
+imshow(binaryImage)

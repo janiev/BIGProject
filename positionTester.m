@@ -3,7 +3,8 @@
 %minPhotos = 3209;%input('the smallest index');
 %maxPhotos = 3600;
 %pictureFolder = 'C:\Users\janva\Desktop\skool\matlab BIG\pictures';
-filename = 'positionDataOverlayedmap4Stem14.gif';
+filename = 'godverkleute2.gif';
+
 
 for i = minPhotos:maxPhotos-100
 

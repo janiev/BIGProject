@@ -1,4 +1,5 @@
 function binaryImage = binaryImageFactory(jpgImage,threshholdValue)
+%deprecated
 %Function converts a jpg image to a useable binaryImage
 
 image = rgb2gray(jpgImage);
